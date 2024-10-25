@@ -4,6 +4,8 @@ Tässä raportissa sieppaan verkkoliikennettä WireShark-sovelluksella, ja analy
 
 Analysointia varten päätin siepata Wi-Fi adapterin liikennettä. Tätä varten olin yhdistänyt Eduroam julkiseen verkkoon, joka on opiskelijoiden käytössä.
 
+## Analyysi
+
 Alhaalla olevassa kuvassa on näkymä, jonka WireShark antaa kaappauksen edetessä. Ensimmäisenä näkyvät tiedot kaapatuista IP-paketeista ovat:
 
 - Järjestysnumero
