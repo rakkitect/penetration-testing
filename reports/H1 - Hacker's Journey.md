@@ -40,6 +40,8 @@ Tätä tehtävää varten asensin Vagrant-koneelleni kaksi demonia, Apache-palve
 ![Vagrant toinen tcp-scan](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/vagrant-tcp_scan2.png)
 
 ## e) Metasploitable 2 asennus
+Latasin Metasloitable 2 asennukseen tarvittavat tiedostot [täältä](https://sourceforge.net/projects/metasploitable/). 
+
 ## f) Virtuaaliverkko Kali-koneen ja Metasploit-koneen välille
 ## g) Metasploit-koneen etsiminen porttiskannauksella
 ## h) Metasploit-koneen tarkka porttiskannaus
@@ -49,3 +51,4 @@ Tätä tehtävää varten asensin Vagrant-koneelleni kaksi demonia, Apache-palve
 - Herrasmieshakkerit 2023. Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e. Kuunneltavissa: https://open.spotify.com/episode/2z1oltiq7JYOtIAXQr8yHa?si=2071790e4b2d4566
 - Kali Org 2024. Kali inside VirtualBox. Luettavissa: https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/
 - Kali Org s.a. Kali installer images. Luettavissa: https://www.kali.org/get-kali/#kali-installer-images
+- Sourceforge 2019. Metasploitable. Luettavissa: https://sourceforge.net/projects/metasploitable/
