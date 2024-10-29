@@ -40,7 +40,7 @@ Tätä tehtävää varten asensin Vagrant-koneelleni kaksi demonia, Apache-palve
 ![Vagrant toinen tcp-scan](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/vagrant-tcp_scan2.png)
 
 ## e) Metasploitable 2 asennus
-Latasin Metasloitable 2 asennukseen tarvittavat tiedostot [täältä](https://sourceforge.net/projects/metasploitable/). 
+Latasin Metasloitable 2 asennukseen tarvittavat tiedostot [täältä](https://sourceforge.net/projects/metasploitable/). Asennustiedoston lataamisessa kesti itselläni n. 40 minuuttia, ja verkkoyhteyteni on suhteellisen nopea (400Mpbs), joten tähän kannattaa varata
 
 ## f) Virtuaaliverkko Kali-koneen ja Metasploit-koneen välille
 ## g) Metasploit-koneen etsiminen porttiskannauksella
