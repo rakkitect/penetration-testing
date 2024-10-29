@@ -40,9 +40,35 @@ Tätä tehtävää varten asensin Vagrant-koneelleni kaksi demonia, Apache-palve
 ![Vagrant toinen tcp-scan](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/vagrant-tcp_scan2.png)
 
 ## e) Metasploitable 2 asennus
-Latasin Metasloitable 2 asennukseen tarvittavat tiedostot [täältä](https://sourceforge.net/projects/metasploitable/). Asennustiedoston lataamisessa kesti itselläni n. 40 minuuttia, ja verkkoyhteyteni on suhteellisen nopea (400Mpbs), joten tähän kannattaa varata
+Latasin Metasloitable 2 asennukseen tarvittavat tiedostot [täältä](https://sourceforge.net/projects/metasploitable/). Asennustiedoston lataamisessa kesti itselläni n. 40 minuuttia, ja verkkoyhteyteni on suhteellisen nopea (400Mpbs), joten tähän kannattaa varata aikaa.
+
+Latauksen valmistuttua, zip-tiedosto pitää purkaa. Tämän jälkeen luodaan uusi virtuaalikone. Tähän käytin Geeks for Geeksin ohjetta (Geeks for Geeks, 2022). Kovalevyä valittaessa en luonut uutta, vaan valitsin "Use an existing Virtual Hard Disk File", ja etsin purkamamme Metasploit kansion, josta löytyy **Metasploitable.vmdk**-virtuaalinen kovalevy.
+
+Lisäksi asetin jo nyt virtuaalikoneen verkkoasetuksista Adapteri 1:n **Host-only Adapteriksi**, tämä tulee olemaan oleellista seuraavassa tehtävässä.
+
+Virtuaalikoneen lopulliset speksit olivat seuraavat:
+
+![Metasploit-koneen speksit](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Metasploit-specs.png)
+
+Koneen käynnistyksen jälkeen kirjauduin sisään Metasploitin oletustunnuksilla:
+- Username: msfadmin
+- Password: msfadmin
 
 ## f) Virtuaaliverkko Kali-koneen ja Metasploit-koneen välille
+Jotta pystyn tunkeutumaan Metasploit-koneelle Kali-koneeltani, näiden kahden koneen välille pitää luoda verkkoyhteys. Ne eivät kuitenkaan saa olla julkisessa verkossa, jotten vahingossa tee mitään laitonta.
+
+Ensimmäisenä menin Kali-koneen verkkoasetuksiin, ja varmistin että Adapteri 1, joka oli yhdistettynä NAT-verkkoon oli kytketty pois päältä. Tämän jälkeen valitsin Adapteri 2:n, jonka asetin **Host-only adapteriksi**, ja varmistin että se on kytketty.
+
+![Kali Host-only](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/kali-host_only.png)
+
+![Metasploitable Host-only](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/metasploit-host_only.png)
+
+Edellisessä tehtävässä asetin Metasploitable-koneen jo valmiiksi Host-only verkkoon, joten tämän hetkisillä tiedoillani näiden kahden koneen pitäisi nyt pystyä keskustelemaan keskenään, mutta jostain syystä tämä ei onnistu. Pingatessani Metasploitable-konetta Kali-koneelta, tulee vastaus "ping: connect: Network is unreachable".
+
+Tässä vaiheessa palasin Valkamon artikkeliin virtuaalikoneiden asennuksista (Valkamo 2022). Kokeilin hänellä toiminutta ratkaisua luoda uusi adapteri, ja käytin tätä molemmilla koneilla. Tämäkään ei toiminut.
+
+Lopputulos tässä vaiheessa on se, että mikäli Kali-koneella on yhteys verkkoon, pystyn sillä pingaamaan Metasploit-konetta, vaikka tässä olisi host-only network adapteri. Kun Kali-koneelta poistaa verkkoyhteyden, ei se saa enään yhteyttä Metasploit-koneeseen vaikka molemmat ovat samassa host-only verkossa.
+
 ## g) Metasploit-koneen etsiminen porttiskannauksella
 ## h) Metasploit-koneen tarkka porttiskannaus
 
@@ -52,3 +78,5 @@ Latasin Metasloitable 2 asennukseen tarvittavat tiedostot [täältä](https://so
 - Kali Org 2024. Kali inside VirtualBox. Luettavissa: https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/
 - Kali Org s.a. Kali installer images. Luettavissa: https://www.kali.org/get-kali/#kali-installer-images
 - Sourceforge 2019. Metasploitable. Luettavissa: https://sourceforge.net/projects/metasploitable/
+- Geeks for Geeks 2022. How to install Metasploitable 2. Luettavissa: https://www.geeksforgeeks.org/how-to-install-metasploitable-2-in-virtualbox/
+- Valkamo 2022. Hacking into a Target using Metasploit. Luettavissa: https://tuomasvalkamo.com/PenTestCourse/week-2/
