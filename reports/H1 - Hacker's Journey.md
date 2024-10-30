@@ -71,6 +71,7 @@ Koneen käynnistyksen jälkeen kirjauduin sisään Metasploitin oletustunnuksill
 - Password: msfadmin
 
 ## f) Virtuaaliverkko Kali-koneen ja Metasploit-koneen välille
+### Day 1
 Jotta pystyn tunkeutumaan Metasploit-koneelle Kali-koneeltani, näiden kahden koneen välille pitää luoda verkkoyhteys. Ne eivät kuitenkaan saa olla julkisessa verkossa, jotten vahingossa tee mitään laitonta.
 
 Ensimmäisenä menin Kali-koneen verkkoasetuksiin, ja varmistin että Adapteri 1, joka oli yhdistettynä NAT-verkkoon oli kytketty pois päältä. Tämän jälkeen valitsin Adapteri 2:n, jonka asetin **Host-only adapteriksi**, ja varmistin että se on kytketty.
@@ -85,7 +86,9 @@ Tässä vaiheessa palasin Valkamon artikkeliin virtuaalikoneiden asennuksista (V
 
 Lopputulos tässä vaiheessa on se, että mikäli Kali-koneella on yhteys verkkoon, pystyn sillä pingaamaan Metasploit-konetta, vaikka tässä olisi host-only network adapteri. Kun Kali-koneelta poistaa verkkoyhteyden, ei se saa enään yhteyttä Metasploit-koneeseen vaikka molemmat ovat samassa host-only verkossa.
 
-Seuraavana päivänä asensin molemmat koneet uusiksi, seuraten muuten aiempia valintojani mutta ennen ensimmäistä käynnistämistä asetin molemmat koneet samaan Host-only verkkoon. Tämän jälkeen sain muodostettua yhteyden molempien koneiden välille.
+### Day 2
+
+Seuraavana päivänä asensin molemmat koneet uusiksi, seuraten muuten aiempia valintojani mutta ennen ensimmäistä käynnistämistä asetin molemmat koneet samaan Host-only verkkoon. Tämän jälkeen sain muodostettua yhteyden molempien koneiden välille. Mielestäni en tehnyt muita muutoksia asennusprosessin yhteydessä, mutta selkeästi jotain oli ensimmäisellä kerralla mennyt pieleen?
 
 ![Kali-Metasploit yhteys](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/kali-metasploit-ping.png)
 
