@@ -4,6 +4,10 @@
 
 ### Herrasmieshakkerit - Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e
 ### Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains, chapters Abstract, 3.2 Intrusion Kill Chain.
+- Tavalliset verkkojen puolustamisessa käytetyt työkalut kuten anti-virus eivät riitä kehittyneitä hyökkääviä osapuolia vastaan
+- Hyökkääjien käyttämiin tekniikoihin ja erityisesti "tappoketjuun" tutustumalla, puolustava osapuoli kykenee pienentämään järjestelmän haavoittuvuutta
+- Kill chain, eli tappoketju, on prosessi jolla hyökkääjä suunnittelee hyökkäyksen askel askeleelta alusta loppuun
+- 
 ### Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance.
 ### KKO 2003:36.
 
@@ -69,8 +73,27 @@ Tässä vaiheessa palasin Valkamon artikkeliin virtuaalikoneiden asennuksista (V
 
 Lopputulos tässä vaiheessa on se, että mikäli Kali-koneella on yhteys verkkoon, pystyn sillä pingaamaan Metasploit-konetta, vaikka tässä olisi host-only network adapteri. Kun Kali-koneelta poistaa verkkoyhteyden, ei se saa enään yhteyttä Metasploit-koneeseen vaikka molemmat ovat samassa host-only verkossa.
 
+Seuraavana päivänä asensin molemmat koneet uusiksi, seuraten muuten aiempia valintojani mutta ennen ensimmäistä käynnistämistä asetin molemmat koneet samaan Host-only verkkoon. Tämän jälkeen sain muodostettua yhteyden molempien koneiden välille.
+
+![Kali-Metasploit yhteys](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/kali-metasploit-ping.png)
+
 ## g) Metasploit-koneen etsiminen porttiskannauksella
+Seuraavaksi yritin etsiä Metasploit-koneen käyttämällä **Nmap**-työkalua. Komennolla ```nmap -sn``` Nmap ei löytänyt yhtään avointa porttia, mutta asettamalla kohteeksi tiedossa olevan IP-osoitteen, eli tässä tapauksessa käytin komentoa ```nmap 192.168.30.103```, sain näkyville kaikki avoinna olevat portit Metasploit-koneesta.
+
+```nmap -sn```-komento etsii saatavilla olevat IP-osoitteet, mutta ei suorita porttiskannausta heti löytämisen jälkeen.
+
+
 ## h) Metasploit-koneen tarkka porttiskannaus
+Yksityiskohtaisempaan porttiskannaukseen käytin komentoa ```nmap 192.168.30.103 -A -p-```. Skannauksen tulos oli seuraavanlainen:
+
+![Nmap tarkka skannaus 1](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/nmap-full_scan1.png)
+![Nmap tarkka skannaus 2](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/nmap-full_scan2.png)
+![Nmap tarkka skannaus 3](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/nmap-full_scan3.png)
+
+Mielestäni hyökkääjälle mielenkiintoisia portteja tästä valikoimasta voisivat olla portit 21 (FTP), 23 (Telnet) ja 3306 (MySQL).
+- Port 21/FTP: "Anonymous FTP login allowed" viittaa siihen että koneeseen saa FTP-yhteyden ilman kirjautumista, mikä mahdollistaa hyökkääjälle helpon pääsyn tiedostoihin.
+- Port 23/Telnet: Telnet mahdollistaa salaamattoman yhteyden, jolloin kirjautumistiedot voivat vuotaa helposti.
+- Port 3306/MySQL: Mahdollisuus käyttää tietokantaa ja hyödyntää tunnettuja haavoittuvuuksia, kuten SQL-injektioita.
 
 # Lähteet
 
@@ -80,3 +103,4 @@ Lopputulos tässä vaiheessa on se, että mikäli Kali-koneella on yhteys verkko
 - Sourceforge 2019. Metasploitable. Luettavissa: https://sourceforge.net/projects/metasploitable/
 - Geeks for Geeks 2022. How to install Metasploitable 2. Luettavissa: https://www.geeksforgeeks.org/how-to-install-metasploitable-2-in-virtualbox/
 - Valkamo 2022. Hacking into a Target using Metasploit. Luettavissa: https://tuomasvalkamo.com/PenTestCourse/week-2/
+- Nmap s.a. Options Summary. Luettavissa: https://nmap.org/book/man-briefoptions.html
