@@ -2,24 +2,24 @@
 
 ## x) Lue/Katso/Kuuntele ja tiivistä
 
-### Herrasmieshakkerit - Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e
+### Herrasmieshakkerit - Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e (Herrasmieshakkerit 2023)
 - Puolustusvoimat varmistavat Suomen fyysisen turvallisuuden, mutta Suomen tietojärjestelmien turvallisuudesta ei vastaa mikään yksittäinen taho
 - Laajempi tietoturvaosaaminen NATO:ssa tulee jäsenmailta, eikä niinkään NATO:n sisältä
 - Tuomo Rusilan mukaan hyökkäyskyvykkyys on osa uskottavaa kyberpuolustusta
 - Suuri osa Suoman kyberpuolustuksen voimavaroista on reservissä. Lisäksi Puolustusvoimilla on mahdollisuus hyödyntää myös niitä jotka eivät asepalvelusta ole suorittaneet
 - Kyber on nykyään merkittävä osa laaja-alaista vaikuttamista, niin hyökkääjän kuin myös puolustajan osalta
 
-### Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains, chapters Abstract, 3.2 Intrusion Kill Chain.
+### Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains, chapters Abstract, 3.2 Intrusion Kill Chain. (Amin, Cloppert & Hutchings 2011)
 - Tavalliset verkkojen puolustamisessa käytetyt työkalut kuten anti-virus eivät riitä kehittyneitä hyökkääviä osapuolia vastaan
 - Hyökkääjien käyttämiin tekniikoihin ja erityisesti "tappoketjuun" tutustumalla, puolustava osapuoli kykenee pienentämään järjestelmän haavoittuvuutta
 - Kill chain, eli tappoketju, on prosessi jolla hyökkääjä suunnittelee hyökkäyksen askel askeleelta alusta loppuun. Prosessia sanotaan ketjuksi, koska yhden "linkin" puuttuessa prosessi ei toimi
 
-### € Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance.
+### € Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance. (McCoy, Santos, Sternstein & Taylor 2019)
 - Aktiivinen tiedustelu sisältää porttiskannausta ja haavoittuvuuksien kartoittamista
 - Nmap on suosituin työkalu porttiskannaukseen, sillä se on monipuolinen ja sen käyttöön löytyy paljon ohjeita ja dokumentaatioita
 - Avointen porttien lisäksi aktiivisessa tiedustelussa kartoitetaan kohteen käyttämiä verkkopalveluita
 
-### KKO 2003:36.
+### KKO 2003:36. (Finlex 2003)
 - Epäilty oli suorittanut porttiskannauksen OP:n osuuskunnan tietojärjestelmiä kohtaan, mutta palomuuri oli estänyt tämän
 - Julkisessa verkossa tapahtuva porttiskannaus on rikos, vaikka skannauksessa saatujen tietojen avulla ei ole tarkoitus tunkeutua
 
@@ -113,10 +113,13 @@ Mielestäni hyökkääjälle mielenkiintoisia portteja tästä valikoimasta vois
 
 # Lähteet
 
+- Amin, R., Cloppert, M. & Hutchins, E 2011. Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains. Luettavissa: https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf. Luettu: 30.10.2024
 - Geeks for Geeks 2022. How to install Metasploitable 2. Luettavissa: https://www.geeksforgeeks.org/how-to-install-metasploitable-2-in-virtualbox/. Luettu: 29.10.2024
-- Herrasmieshakkerit 2023. Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e. Kuunneltavissa: https://open.spotify.com/episode/2z1oltiq7JYOtIAXQr8yHa?si=2071790e4b2d4566. Kuunneltu 30.10.2024
+- Finlex 2023. KKO:2003:36. Luettavissa: https://finlex.fi/fi/oikeus/kko/kko/2003/20030036. Luettu: 30.10.2024
+- Hyppönen, M. & Tuominen, T. joulukuu 2023. Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e. Herrasmies Hakkerit-podcast. Kuunneltavissa: https://open.spotify.com/episode/2z1oltiq7JYOtIAXQr8yHa?si=2071790e4b2d4566. Kuunneltu 30.10.2024
 - Kali Org 2024. Kali inside VirtualBox. Luettavissa: https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/. Luettu: 29.10.2024
 - Kali Org s.a. Kali installer images. Luettavissa: https://www.kali.org/get-kali/#kali-installer-images. Luettu: 29.10.2024
+- McCoy, C., Santos, O., Sternstein, J. & Taylor, R. 2019. Art of Hacking - Lesson 4: Active Reconnaissance. Video. Katsottavissa: https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/. Katsottu: 30.10.2024
 - Nmap Options Summary
 - Nmap s.a. a. A Quick Port Scanning Tutorial. Luettavissa: https://nmap.org/book/port-scanning-tutorial.html#port-scanning-tutorial-nmap2. Luettu: 30.10.2024
 - Nmap s.a. b. Command-line Flags. Luettavissa: https://nmap.org/book/port-scanning-options.html. Luettu: 30.10.2024
