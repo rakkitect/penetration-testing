@@ -3,7 +3,11 @@
 ## x) Lue/Katso/Kuuntele ja tiivistä
 
 ### Herrasmieshakkerit - Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e
-- Puolustusvoimat varmistavat Suomen fyysisen turvallisuuden, mutta Suomen tietojärjestelmien turvallisuudesta ei vastaa mikään yksittäinen taho 
+- Puolustusvoimat varmistavat Suomen fyysisen turvallisuuden, mutta Suomen tietojärjestelmien turvallisuudesta ei vastaa mikään yksittäinen taho
+- Laajempi tietoturvaosaaminen NATO:ssa tulee jäsenmailta, eikä niinkään NATO:n sisältä
+- Tuomo Rusilan mukaan hyökkäyskyvykkyys on osa uskottavaa kyberpuolustusta
+- Suuri osa Suoman kyberpuolustuksen voimavaroista on reservissä. Lisäksi Puolustusvoimilla on mahdollisuus hyödyntää myös niitä jotka eivät asepalvelusta ole suorittaneet
+- Kyber on nykyään merkittävä osa laaja-alaista vaikuttamista, niin hyökkääjän kuin myös puolustajan osalta
 
 ### Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains, chapters Abstract, 3.2 Intrusion Kill Chain.
 - Tavalliset verkkojen puolustamisessa käytetyt työkalut kuten anti-virus eivät riitä kehittyneitä hyökkääviä osapuolia vastaan
@@ -102,17 +106,19 @@ Skannauksen tulos oli seuraavanlainen:
 
 Mielestäni hyökkääjälle mielenkiintoisia portteja tästä valikoimasta voisivat olla portit 21 (FTP), 23 (Telnet) ja 3306 (MySQL).
 - Port 21/FTP: "Anonymous FTP login allowed" viittaa siihen että koneeseen saa FTP-yhteyden ilman kirjautumista, mikä mahdollistaa hyökkääjälle helpon pääsyn tiedostoihin.
+  - Ohjaus- ja datansiirto yhteydet eivät ole salattuja, jolloin hyökkääjä voi kaapata kirjautumistiedot tai tiedonsiirron sisällön
 - Port 23/Telnet: Telnet mahdollistaa salaamattoman yhteyden, jolloin kirjautumistiedot voivat vuotaa helposti.
-- Port 3306/MySQL: Mahdollisuus käyttää tietokantaa ja hyödyntää tunnettuja haavoittuvuuksia, kuten SQL-injektioita.
+- Port 3306/MySQL: Mahdollisuus käyttää tietokantaa ja hyödyntää tunnettuja haavoittuvuuksia, kuten SQL-injektioita.  
+  - Käytetty MySQL-versio on vanha, jolloin siinä saattaa olla tunnettuja haavoittuvuuksia
 
 # Lähteet
 
+- Geeks for Geeks 2022. How to install Metasploitable 2. Luettavissa: https://www.geeksforgeeks.org/how-to-install-metasploitable-2-in-virtualbox/. Luettu: 29.10.2024
 - Herrasmieshakkerit 2023. Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e. Kuunneltavissa: https://open.spotify.com/episode/2z1oltiq7JYOtIAXQr8yHa?si=2071790e4b2d4566. Kuunneltu 30.10.2024
 - Kali Org 2024. Kali inside VirtualBox. Luettavissa: https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/. Luettu: 29.10.2024
 - Kali Org s.a. Kali installer images. Luettavissa: https://www.kali.org/get-kali/#kali-installer-images. Luettu: 29.10.2024
-- Sourceforge 2019. Metasploitable. Luettavissa: https://sourceforge.net/projects/metasploitable/. Luettu: 29.10.2024
-- Geeks for Geeks 2022. How to install Metasploitable 2. Luettavissa: https://www.geeksforgeeks.org/how-to-install-metasploitable-2-in-virtualbox/. Luettu: 29.10.2024
-- Valkamo 2022. Hacking into a Target using Metasploit. Luettavissa: https://tuomasvalkamo.com/PenTestCourse/week-2/. Luettu: 29.10.2024
 - Nmap Options Summary
-- Nmap s.a. b. Command-line Flags. Luettavissa: https://nmap.org/book/port-scanning-options.html. Luettu: 30.10.2024
 - Nmap s.a. a. A Quick Port Scanning Tutorial. Luettavissa: https://nmap.org/book/port-scanning-tutorial.html#port-scanning-tutorial-nmap2. Luettu: 30.10.2024
+- Nmap s.a. b. Command-line Flags. Luettavissa: https://nmap.org/book/port-scanning-options.html. Luettu: 30.10.2024
+- Sourceforge 2019. Metasploitable. Luettavissa: https://sourceforge.net/projects/metasploitable/. Luettu: 29.10.2024
+- Valkamo 2022. Hacking into a Target using Metasploit. Luettavissa: https://tuomasvalkamo.com/PenTestCourse/week-2/. Luettu: 29.10.2024
