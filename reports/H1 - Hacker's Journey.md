@@ -3,13 +3,21 @@
 ## x) Lue/Katso/Kuuntele ja tiivistä
 
 ### Herrasmieshakkerit - Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e
+- Puolustusvoimat varmistavat Suomen fyysisen turvallisuuden, mutta Suomen tietojärjestelmien turvallisuudesta ei vastaa mikään yksittäinen taho 
+
 ### Hutchins et al 2011: Intelligence-Driven Computer Network Defense Informed by Analysis of Adversary Campaigns and Intrusion Kill Chains, chapters Abstract, 3.2 Intrusion Kill Chain.
 - Tavalliset verkkojen puolustamisessa käytetyt työkalut kuten anti-virus eivät riitä kehittyneitä hyökkääviä osapuolia vastaan
 - Hyökkääjien käyttämiin tekniikoihin ja erityisesti "tappoketjuun" tutustumalla, puolustava osapuoli kykenee pienentämään järjestelmän haavoittuvuutta
-- Kill chain, eli tappoketju, on prosessi jolla hyökkääjä suunnittelee hyökkäyksen askel askeleelta alusta loppuun
-- 
-### Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance.
+- Kill chain, eli tappoketju, on prosessi jolla hyökkääjä suunnittelee hyökkäyksen askel askeleelta alusta loppuun. Prosessia sanotaan ketjuksi, koska yhden "linkin" puuttuessa prosessi ei toimi
+
+### € Santos et al: The Art of Hacking (Video Collection): 4.3 Surveying Essential Tools for Active Reconnaissance.
+- Aktiivinen tiedustelu sisältää porttiskannausta ja haavoittuvuuksien kartoittamista
+- Nmap on suosituin työkalu porttiskannaukseen, sillä se on monipuolinen ja sen käyttöön löytyy paljon ohjeita ja dokumentaatioita
+- Avointen porttien lisäksi aktiivisessa tiedustelussa kartoitetaan kohteen käyttämiä verkkopalveluita
+
 ### KKO 2003:36.
+- Epäilty oli suorittanut porttiskannauksen OP:n osuuskunnan tietojärjestelmiä kohtaan, mutta palomuuri oli estänyt tämän
+- Julkisessa verkossa tapahtuva porttiskannaus on rikos, vaikka skannauksessa saatujen tietojen avulla ei ole tarkoitus tunkeutua
 
 ## a) Kali Linux asennus
 Latasin Kali Linux 2024.3 64-bittisen version [täältä](https://www.kali.org/get-kali/#kali-installer-images). Loin virtuaalikoneen VirtualBoxilla, jossa asetin käyttöjärjestelmäksi Linuxin, ja versioksi Debianin kuten Kalin omassa dokumentaatioissa (Kali Org, 2024). 
@@ -67,7 +75,7 @@ Ensimmäisenä menin Kali-koneen verkkoasetuksiin, ja varmistin että Adapteri 1
 
 ![Metasploitable Host-only](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/metasploit-host_only.png)
 
-Edellisessä tehtävässä asetin Metasploitable-koneen jo valmiiksi Host-only verkkoon, joten tämän hetkisillä tiedoillani näiden kahden koneen pitäisi nyt pystyä keskustelemaan keskenään, mutta jostain syystä tämä ei onnistu. Pingatessani Metasploitable-konetta Kali-koneelta, tulee vastaus "ping: connect: Network is unreachable".
+Edellisessä tehtävässä asetin Metasploitable-koneen jo valmiiksi Host-only verkkoon, joten tämän hetkisillä tietotaidoillani näiden kahden koneen pitäisi nyt pystyä keskustelemaan keskenään, mutta jostain syystä tämä ei onnistu. Pingatessani Metasploitable-konetta Kali-koneelta, tulee vastaus "ping: connect: Network is unreachable".
 
 Tässä vaiheessa palasin Valkamon artikkeliin virtuaalikoneiden asennuksista (Valkamo 2022). Kokeilin hänellä toiminutta ratkaisua luoda uusi adapteri, ja käytin tätä molemmilla koneilla. Tämäkään ei toiminut.
 
@@ -80,11 +88,13 @@ Seuraavana päivänä asensin molemmat koneet uusiksi, seuraten muuten aiempia v
 ## g) Metasploit-koneen etsiminen porttiskannauksella
 Seuraavaksi yritin etsiä Metasploit-koneen käyttämällä **Nmap**-työkalua. Komennolla ```nmap -sn``` Nmap ei löytänyt yhtään avointa porttia, mutta asettamalla kohteeksi tiedossa olevan IP-osoitteen, eli tässä tapauksessa käytin komentoa ```nmap 192.168.30.103```, sain näkyville kaikki avoinna olevat portit Metasploit-koneesta.
 
-```nmap -sn```-komento etsii saatavilla olevat IP-osoitteet, mutta ei suorita porttiskannausta heti löytämisen jälkeen.
+```nmap -sn```-komento etsii saatavilla olevat IP-osoitteet, mutta ei suorita porttiskannausta heti löytämisen jälkeen (Nmap Options Summary).
 
 
 ## h) Metasploit-koneen tarkka porttiskannaus
-Yksityiskohtaisempaan porttiskannaukseen käytin komentoa ```nmap 192.168.30.103 -A -p-```. Skannauksen tulos oli seuraavanlainen:
+Yksityiskohtaisempaan porttiskannaukseen käytin komentoa ```nmap 192.168.30.103 -A -p-```. Komennon '-A' ottaa käyttöön agressiivisen skannauksen jolla tunnistetaan tai selvitetään käyttöjärjestelmä, palvelujen versio ja traceroute-polku (Nmap s.a. a). '-p-' skannaa kaikki portit eli 1-65535 (Nmap s.a. b).
+
+Skannauksen tulos oli seuraavanlainen:
 
 ![Nmap tarkka skannaus 1](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/nmap-full_scan1.png)
 ![Nmap tarkka skannaus 2](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/nmap-full_scan2.png)
@@ -97,10 +107,12 @@ Mielestäni hyökkääjälle mielenkiintoisia portteja tästä valikoimasta vois
 
 # Lähteet
 
-- Herrasmieshakkerit 2023. Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e. Kuunneltavissa: https://open.spotify.com/episode/2z1oltiq7JYOtIAXQr8yHa?si=2071790e4b2d4566
-- Kali Org 2024. Kali inside VirtualBox. Luettavissa: https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/
-- Kali Org s.a. Kali installer images. Luettavissa: https://www.kali.org/get-kali/#kali-installer-images
-- Sourceforge 2019. Metasploitable. Luettavissa: https://sourceforge.net/projects/metasploitable/
-- Geeks for Geeks 2022. How to install Metasploitable 2. Luettavissa: https://www.geeksforgeeks.org/how-to-install-metasploitable-2-in-virtualbox/
-- Valkamo 2022. Hacking into a Target using Metasploit. Luettavissa: https://tuomasvalkamo.com/PenTestCourse/week-2/
-- Nmap s.a. Options Summary. Luettavissa: https://nmap.org/book/man-briefoptions.html
+- Herrasmieshakkerit 2023. Suomen kyberpuolustus, vieraana Tuomo Rusila | 0x2e. Kuunneltavissa: https://open.spotify.com/episode/2z1oltiq7JYOtIAXQr8yHa?si=2071790e4b2d4566. Kuunneltu 30.10.2024
+- Kali Org 2024. Kali inside VirtualBox. Luettavissa: https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/. Luettu: 29.10.2024
+- Kali Org s.a. Kali installer images. Luettavissa: https://www.kali.org/get-kali/#kali-installer-images. Luettu: 29.10.2024
+- Sourceforge 2019. Metasploitable. Luettavissa: https://sourceforge.net/projects/metasploitable/. Luettu: 29.10.2024
+- Geeks for Geeks 2022. How to install Metasploitable 2. Luettavissa: https://www.geeksforgeeks.org/how-to-install-metasploitable-2-in-virtualbox/. Luettu: 29.10.2024
+- Valkamo 2022. Hacking into a Target using Metasploit. Luettavissa: https://tuomasvalkamo.com/PenTestCourse/week-2/. Luettu: 29.10.2024
+- Nmap Options Summary
+- Nmap s.a. b. Command-line Flags. Luettavissa: https://nmap.org/book/port-scanning-options.html. Luettu: 30.10.2024
+- Nmap s.a. a. A Quick Port Scanning Tutorial. Luettavissa: https://nmap.org/book/port-scanning-tutorial.html#port-scanning-tutorial-nmap2. Luettu: 30.10.2024
