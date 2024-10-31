@@ -31,7 +31,7 @@ Loppuliset speksit näkyvät alhaalla:
 ![Kali-koneen speksit](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Kali-speksit.png)
   
 ## b) Kali-virtuaalikoneen irroittaminen verkosta
-Irroitan luomani Kali-virtuaalikoneen verkosta menemällä VirtualBoxin asetuksiin, valitsemalla **Network**->**Advanced**->**[ ]Cable Connected**
+Irroitin luomani Kali-virtuaalikoneen verkosta menemällä VirtualBoxin asetuksiin, valitsemalla **Network**->**Advanced**->**[ ]Cable Connected**
 
 ![Kali verkkoasetukset](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Kali-verkkoasetukset.png)
 
@@ -51,14 +51,14 @@ Vagrant-virtuaalikoneen porttiskannaus paljastaa yhden avoinna olevan tcp-portin
 ![Vagrant tcp-scan](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Vagrant-tcp_scan.png)
 
 ## d) Porttiskannaus demonien asennuksen jälkeen
-Tätä tehtävää varten asensin Vagrant-koneelleni kaksi demonia, Apache-palvelimen ja Nginx HTTP-palvelimen. Localhost porttiskannauksen jälkeen erona näkyy, että portin 22 lisäksi avoinna on myös portti 80, jolla on yhteys HTTP-palveluun. Tämä johtuu siitä että sekä Apache ja Nginx käyttävät HTTP-yhteyksiä.
+Tätä tehtävää varten asensin Vagrant-koneelleni kaksi demonia, Apache-palvelimen ja Nginx HTTP-palvelimen. Localhost porttiskannauksen jälkeen erona näkyy, että portin 22 lisäksi avoinna on myös portti 80, jolla on yhteys HTTP-palveluun. Tämä johtuu siitä, että sekä Apache ja Nginx käyttävät HTTP-yhteyksiä.
 
 ![Vagrant toinen tcp-scan](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/vagrant-tcp_scan2.png)
 
 ## e) Metasploitable 2 asennus
 Latasin Metasloitable 2 asennukseen tarvittavat tiedostot [täältä](https://sourceforge.net/projects/metasploitable/). Asennustiedoston lataamisessa kesti itselläni n. 40 minuuttia, ja verkkoyhteyteni on suhteellisen nopea (400Mpbs), joten tähän kannattaa varata aikaa.
 
-Latauksen valmistuttua, zip-tiedosto pitää purkaa. Tämän jälkeen luodaan uusi virtuaalikone. Tähän käytin Geeks for Geeksin ohjetta (Geeks for Geeks, 2022). Kovalevyä valittaessa en luonut uutta, vaan valitsin "Use an existing Virtual Hard Disk File", ja etsin purkamamme Metasploit kansion, josta löytyy **Metasploitable.vmdk**-virtuaalinen kovalevy.
+Latauksen valmistuttua zip-tiedosto pitää purkaa. Tämän jälkeen luodaan uusi virtuaalikone. Tähän käytin Geeks for Geeksin ohjetta (Geeks for Geeks, 2022). Kovalevyä valittaessa en luonut uutta, vaan valitsin "Use an existing Virtual Hard Disk File", ja etsin kansion johon purin Metasploit-zipin, josta löytyy **Metasploitable.vmdk**-virtuaalinen kovalevy.
 
 Lisäksi asetin jo nyt virtuaalikoneen verkkoasetuksista Adapteri 1:n **Host-only Adapteriksi**, tämä tulee olemaan oleellista seuraavassa tehtävässä.
 
