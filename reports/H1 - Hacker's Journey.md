@@ -58,7 +58,7 @@ Tätä tehtävää varten asensin Vagrant-koneelleni kaksi demonia, Apache-palve
 ## e) Metasploitable 2 asennus
 Latasin Metasloitable 2 asennukseen tarvittavat tiedostot [täältä](https://sourceforge.net/projects/metasploitable/). Asennustiedoston lataamisessa kesti itselläni n. 40 minuuttia, ja verkkoyhteyteni on suhteellisen nopea (400Mpbs), joten tähän kannattaa varata aikaa.
 
-Latauksen valmistuttua zip-tiedosto pitää purkaa. Tämän jälkeen luodaan uusi virtuaalikone. Tähän käytin Geeks for Geeksin ohjetta (Geeks for Geeks, 2022). Kovalevyä valittaessa en luonut uutta, vaan valitsin "Use an existing Virtual Hard Disk File", ja etsin kansion johon purin Metasploit-zipin, josta löytyy **Metasploitable.vmdk**-virtuaalinen kovalevy.
+Latauksen valmistuttua zip-tiedosto pitää purkaa. Tämän jälkeen luodaan uusi virtuaalikone. Tähän käytin Geeks for Geeksin ohjetta (Geeks for Geeks, 2022). Kovalevyä valittaessa en luonut uutta, vaan valitsin "Use an existing Virtual Hard Disk File", ja etsin kansion johon purin Metasploitable-zipin, josta löytyy **Metasploitable.vmdk**-virtuaalinen kovalevy.
 
 Lisäksi asetin jo nyt virtuaalikoneen verkkoasetuksista Adapteri 1:n **Host-only Adapteriksi**, tämä tulee olemaan oleellista seuraavassa tehtävässä.
 
@@ -66,13 +66,13 @@ Virtuaalikoneen lopulliset speksit olivat seuraavat:
 
 ![Metasploit-koneen speksit](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Metasploit-specs.png)
 
-Koneen käynnistyksen jälkeen kirjauduin sisään Metasploitin oletustunnuksilla:
+Koneen käynnistyksen jälkeen kirjauduin sisään Metasploitablen oletustunnuksilla:
 - Username: msfadmin
 - Password: msfadmin
 
-## f) Virtuaaliverkko Kali-koneen ja Metasploit-koneen välille
+## f) Virtuaaliverkko Kali-koneen ja Metasploitable-koneen välille
 ### Day 1
-Jotta pystyn tunkeutumaan Metasploit-koneelle Kali-koneeltani, näiden kahden koneen välille pitää luoda verkkoyhteys. Ne eivät kuitenkaan saa olla julkisessa verkossa, jotten vahingossa tee mitään laitonta.
+Jotta pystyn tunkeutumaan Metasploitable-koneelle Kali-koneeltani, näiden kahden koneen välille pitää luoda verkkoyhteys. Ne eivät kuitenkaan saa olla julkisessa verkossa, jotten vahingossa tee mitään laitonta.
 
 Ensimmäisenä menin Kali-koneen verkkoasetuksiin, ja varmistin että Adapteri 1, joka oli yhdistettynä NAT-verkkoon oli kytketty pois päältä. Tämän jälkeen valitsin Adapteri 2:n, jonka asetin **Host-only adapteriksi**, ja varmistin että se on kytketty.
 
@@ -84,7 +84,7 @@ Edellisessä tehtävässä asetin Metasploitable-koneen jo valmiiksi Host-only v
 
 Tässä vaiheessa palasin Valkamon artikkeliin virtuaalikoneiden asennuksista (Valkamo 2022). Kokeilin hänellä toiminutta ratkaisua luoda uusi adapteri, ja käytin tätä molemmilla koneilla. Tämäkään ei toiminut.
 
-Lopputulos tässä vaiheessa on se, että mikäli Kali-koneella on yhteys verkkoon, pystyn sillä pingaamaan Metasploit-konetta, vaikka tässä olisi host-only network adapteri. Kun Kali-koneelta poistaa verkkoyhteyden, ei se saa enään yhteyttä Metasploit-koneeseen vaikka molemmat ovat samassa host-only verkossa.
+Lopputulos tässä vaiheessa on se, että mikäli Kali-koneella on yhteys verkkoon, pystyn sillä pingaamaan Metasploitable-konetta, vaikka tässä olisi host-only network adapteri. Kun Kali-koneelta poistaa verkkoyhteyden, ei se saa enään yhteyttä Metasploitable-koneeseen vaikka molemmat ovat samassa host-only verkossa.
 
 ### Day 2
 
@@ -92,13 +92,13 @@ Seuraavana päivänä asensin molemmat koneet uusiksi, seuraten muuten aiempia v
 
 ![Kali-Metasploit yhteys](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/kali-metasploit-ping.png)
 
-## g) Metasploit-koneen etsiminen porttiskannauksella
-Seuraavaksi yritin etsiä Metasploit-koneen käyttämällä **Nmap**-työkalua. Komennolla ```nmap -sn``` Nmap ei löytänyt yhtään avointa porttia, mutta asettamalla kohteeksi tiedossa olevan IP-osoitteen, eli tässä tapauksessa käytin komentoa ```nmap 192.168.30.103```, sain näkyville kaikki avoinna olevat portit Metasploit-koneesta.
+## g) Metasploitable-koneen etsiminen porttiskannauksella
+Seuraavaksi yritin etsiä Metasploitable-koneen käyttämällä **Nmap**-työkalua. Komennolla ```nmap -sn``` Nmap ei löytänyt yhtään avointa porttia, mutta asettamalla kohteeksi tiedossa olevan IP-osoitteen, eli tässä tapauksessa käytin komentoa ```nmap 192.168.30.103```, sain näkyville kaikki avoinna olevat portit Metasploitable-koneesta.
 
 ```nmap -sn```-komento etsii saatavilla olevat IP-osoitteet, mutta ei suorita porttiskannausta heti löytämisen jälkeen (Nmap Options Summary).
 
 
-## h) Metasploit-koneen tarkka porttiskannaus
+## h) Metasploitable-koneen tarkka porttiskannaus
 Yksityiskohtaisempaan porttiskannaukseen käytin komentoa ```nmap 192.168.30.103 -A -p-```. Komennon '-A' ottaa käyttöön agressiivisen skannauksen jolla tunnistetaan tai selvitetään käyttöjärjestelmä, palvelujen versio ja traceroute-polku (Nmap s.a. a). '-p-' skannaa kaikki portit eli 1-65535 (Nmap s.a. b).
 
 Skannauksen tulos oli seuraavanlainen:
