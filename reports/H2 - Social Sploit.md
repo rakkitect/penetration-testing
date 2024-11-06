@@ -67,18 +67,18 @@ Komennolla ```use 1``` valitsen backdoor-hyökkäyksen, ja komennolla ```set RHO
 ## h) From shell to Meterpreter
 Päivitin shell-yhteyden Meterpreter-yhteydeksi asettammalla yhteyden taustalle pikanäppäimellä **Ctrl+Z**, jonka jälkeen ajoin komennon ```sessions -u 1```.
 
-![Shellistä Meterpreteriin]()
+![Shellistä Meterpreteriin](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/shell-meterpreter.png)
 
 ## i) Lateral movement
 Kansiosta /home löytyy paikalliset käyttäjät. Komennolla ```cat /etc/shadow``` saadaan selville käyttäjien hashatut salasanat. Näitä voidaan yrittää crackata joko sanakirjahyökkäyksellä tai brute forcella. passwd ja shadow tiedostot voidaan ladata hyökkäävälle koneelle 
 
 ```ifconfig``` ja ```route``` Näyttävät kohteen verkon rajapinnat, IP-osoitteet ja reititystaulun. Näillä tiedoilla voitaisiin laajentaa hyökkäystä verkon muihin laitteisiin, mikäli niitä on.
 
-![Verkkotiedot]()
+![Verkkotiedot](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/metasploitable-ifconfig-ja-route.png)
 
 Ajamalla moduulin "local_exploit_suggester" komennolla ```run post/multi/recon/local_exploit_suggester```, saan kerättyä tietoa mitä muita haavoittuvuuksia voin hyödyntää.
 
-![Local exploit suggester]
+![Local exploit suggester](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/local_exploit_suggester.png)
 
 ## j) Murtautuminen toisella tavalla
 Tätä tehtävää varten selasin Metasploitable2 walkthrough ohjeita, ja etsin mitä portteja suositellaan murtautumiseen. Päädyin valitsemaan Samban, eli portti 139.
