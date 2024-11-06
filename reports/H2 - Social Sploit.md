@@ -1,4 +1,4 @@
-# H2 - Social Sploit
+![image](https://github.com/user-attachments/assets/b4800aab-ff38-49fa-a0c1-5df35465e5e3)# H2 - Social Sploit
 ##### Pentesting course taught by Tero Karvinen @ Haaga-Helia
 
 ## x) Lue ja tiivistä
@@ -86,10 +86,21 @@ Tätä tehtävää varten selasin Metasploitable2 walkthrough ohjeita, ja etsin 
 Tunkeutuminen oli varsin samanlainen kuin edellisessä tehtävässä vsftpd:n avulla, asetin RHOST:iksi kohde koneen IP:n, mutta tällä kertaa piti asettaa myös LHOST, eli hyökkäävän koneen IP-osoite. Saatuani yhteyden, päivitin sen taas Meterpreteriksi.
 
 ## k) Meterpreterin ominaisuudet
+Meterpreterin avulla pystytään ajamaan komentoja jotka paljastavat tietoja hyökkäyksen kohteesta, kuten ```sysinfo```, ```ifconfig``` ja ```arp```.
 
+![Meterpreter ominaisuudet 1](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/meterpreter-ominaisuudet-1.png)
 
+Meterpreterin avulla pystyy myös listaamaan kaikki kohdekoneen käynnissä olevat prosessit komennolla ```ps```, ja joko siirtää yhteyden vähemmän huomattavaan prosessiin komennolla ```migrate``` tai pysäyttämään prosesseja komennolla ```kill```
+
+Kohdekoneelta saa myös ladattua tiedostoja suoraan hyökkäävälle koneelle komennolla ```download <TIEDOSTON POLKU>```
+
+![Download](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/meterpreter-download.png)
+
+## l) Shell-session tallentaminen tekstitiedostoon
+Komento ```script -fa log001.txt``` aloittaa käytettyjen komentojen tallenuksen log001.txt-tiedostoon. Tästä tiedostosta pystyy hakemaan jälkikäteen kaikki käytetyt komennot ja saadut tulosteet. Ymmärtääkseni tämä kuitenkin pitää tehdä ennen Metasploitin käynnistämistä jos haluan tallentaa tunkeutumisen aikana käytetyt komennot. Tiedosto tallentuu automaattisesti käyttäjän kotihakemistoon paikallisella koneella. Scriptin ja komentojen tallennuksen voi lopettaa ```exit```-komennolla.
 
 ## Lähteet
 
-
-How to Fix Metasploit Database Not Connected or Cache Not Built. Luettavissa: https://miteshshah.github.io/linux/kali/how-to-fix-metasploit-database-not-connected-or-cache-not-built/
+- Jaswal, N 2020. Mastering Metasploit - Fourth Edition. Chapter 1: Approaching a Penetration Test Using Metasploit. Luettu: 06.11.2024
+- Rapid7 s.a. Metasploitable 2 Exploitability Guide. Luettavissa: https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide. Luettu: 06.11.2024
+- Shah, Mitesh 2015. How to Fix Metasploit Database Not Connected or Cache Not Built. Luettavissa: https://miteshshah.github.io/linux/kali/how-to-fix-metasploit-database-not-connected-or-cache-not-built/. Luettu: 06.11.2024
