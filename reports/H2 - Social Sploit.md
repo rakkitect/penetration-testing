@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/b4800aab-ff38-49fa-a0c1-5df35465e5e3)# H2 - Social Sploit
+# H2 - Social Sploit
 ##### Pentesting course taught by Tero Karvinen @ Haaga-Helia
 
 ## x) Lue ja tiivistä
