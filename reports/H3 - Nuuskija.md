@@ -86,6 +86,8 @@ Jäljelle jäi vain muutama vaihtoehto, jotka on helppo käydä läpi manuaalise
 
 ## e) Hack The Box
 
+Tässä vaiheessa raporttia kello on 00:55 14.11.2024. Kurssia varten mainitsen että raportti palautuu ajoissa, mutta tämä viimeinen osio suoritetaan jälkikäteen. Lisäksi mahdolliset typot ja virheet lähteissä korjataan.
+
 # Lähteet
 
 - HackTricks s.a. Generic Methodologies & Resources. Basic Forensic Methodology. Pcap Inspection. Wireshark tricks. Luettavissa: https://book.hacktricks.xyz/generic-methodologies-and-resources/basic-forensic-methodology/pcap-inspection/wireshark-tricks. Luettu: 13.11.2024
