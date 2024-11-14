@@ -88,7 +88,32 @@ Jäljelle jäi vain muutama vaihtoehto, jotka on helppo käydä läpi manuaalise
 
 Tässä vaiheessa raporttia kello on 00:55 14.11.2024. Kurssia varten mainitsen että raportti palautuu ajoissa, mutta tämä viimeinen osio suoritetaan jälkikäteen. Lisäksi mahdolliset typot ja virheet lähteissä korjataan.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+### HOX: Hakkerointi jatkui 14.11, eli "seuraavana" päivänä
+
+Aluksi avaan kuinka HackTheBox:iin pääse sisälle. Ensimmäisenä luodaan tili halutulla tavalla, jonka jälkeen oikeasta yläkulmasta valitaan **"Connect to HTB"**. Tässä vaiheessa valitaan omaa osaamistasoa vastaava kohde, **"Machines"** tai **"Starting Point"**. Starting Point on ns. ensikertalaiselle, ja valitsen sen jotta pääsen näkemään miten ympäristö toimii.
+
+Tehtyäni valinnat, latasin OpenVPN-sertifikaatin jolla pääsen samaan verkkoon kuin kohdekone jotta en ole yhteydessä julkiseen verkkoon. Käyttääkseni tätä sertifikaattia latasin OpenVPN-paketin paketinhallinnasta, ja seurasin HTB:n ohjetta kuinka yhteys otetaan käyttöön (HackTheBox s.a.)
+
+Seuraamalla "Starting Point" ohjeita HackTheBoxin sivuilta, luon kohdekoneen.
+
+Ensiksi varmistin, että olemme varmasti kohdeverkossa pingaamalla kohdekonetta:
+
+![HTB ping]()
+
+Tämän jälkeen suoritin yksinkertaisen porttiskannauksen nmapilla ```nmap 10.129.168.168```, ja tuloksena näkyy että kohteessa on yksi avonainen portti:
+
+![HTB nmap]()
+
+Vaihtoehtojen ollessa vähissä, otin telnet-yhteyden kohdekoneeseen, ja kokeilin kirjautua root-tunnuksilla sisään. Tason ollessa "aloittelija", tunnuksilla ei ollut salasanaa ja pääsimme sisään! Seuraten tehtävänantoa HTB:n sivuilla, minun piti etsiä root-lippu eli flagi, joka löytyikin rootin kotihakemistosta.
+
+Todisteena onnistuneesta "hakkeroinnista":
+
+![HTB meow pwned]()
+
 # Lähteet
 
+- HackTheBox s.a. Introduction to Lab Access. Luettavissa: https://help.hackthebox.com/en/articles/5185687-introduction-to-lab-access. Luettu: 14.11.2024
 - HackTricks s.a. Generic Methodologies & Resources. Basic Forensic Methodology. Pcap Inspection. Wireshark tricks. Luettavissa: https://book.hacktricks.xyz/generic-methodologies-and-resources/basic-forensic-methodology/pcap-inspection/wireshark-tricks. Luettu: 13.11.2024
-- Karvinen, T. 2023. Find Hidden Web Directories. Luettavissa: https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/
+- Karvinen, T. 2023. Find Hidden Web Directories. Luettavissa: https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/. Luettu: 13.11.2024
