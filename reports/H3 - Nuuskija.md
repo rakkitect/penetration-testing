@@ -100,17 +100,17 @@ Seuraamalla "Starting Point" ohjeita HackTheBoxin sivuilta, luon kohdekoneen.
 
 Ensiksi varmistin, että olemme varmasti kohdeverkossa pingaamalla kohdekonetta:
 
-![HTB ping]()
+![HTB ping](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/HTB_ping.png)
 
 Tämän jälkeen suoritin yksinkertaisen porttiskannauksen nmapilla ```nmap 10.129.168.168```, ja tuloksena näkyy että kohteessa on yksi avonainen portti:
 
-![HTB nmap]()
+![HTB nmap](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/HTB_nmap.png)
 
 Vaihtoehtojen ollessa vähissä, otin telnet-yhteyden kohdekoneeseen, ja kokeilin kirjautua root-tunnuksilla sisään. Tason ollessa "aloittelija", tunnuksilla ei ollut salasanaa ja pääsimme sisään! Seuraten tehtävänantoa HTB:n sivuilla, minun piti etsiä root-lippu eli flagi, joka löytyikin rootin kotihakemistosta.
 
 Todisteena onnistuneesta "hakkeroinnista":
 
-![HTB meow pwned]()
+![HTB meow pwned](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/HTB_meow_pwnd.png)
 
 # Lähteet
 
