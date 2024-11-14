@@ -36,6 +36,8 @@ Tämän jälkeen vahvistin SSH session olemassa olon, ja päivitin yhteyden mete
 ## b) Valitun hyökkäyksen lähdekoodin avaus ja arviointi
 SSH_login hyökkäyksen "sorsa" eli lähdekoodi aukeaa helpoiten msfconsolessa komennolla ```edit```, jolloin lähdekoodi tulee ruudulle näkyviin. Seuraavaksi omia pohditojani lähdekoodista parhaan osaamiseni mukaisesti.
 
+***!!! Lisäys: 14.11.2024 11:10 = Tässä tehtävässä murtauduttiin Metasploitable2-kohdekoneeseen !!!***
+
 Heti alussa selviää mitä toimintoja ja asetuksia moduuli käyttää Metasploit Frameworkista.
 
 ![SSH_login included](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/SSH_Login_included.png)
