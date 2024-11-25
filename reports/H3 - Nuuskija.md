@@ -70,8 +70,6 @@ Muuta mielenkiintoista en kaappauksesta löytänyt, tai tajua etsiä. "Brute For
 
 Ensiksi asensin Fuff:in Tero Karvisen ohjeen mukaisesti (Karvinen, T. 2023). Asennuksen jälkeen ajoin työkalun komennolla ```./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ```.
 
-![FFUF tulos](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/FFUF_tulos.png)
-
 Huomaan heti, että kaikkien ruudulla näkyvien tuloksien koko on 154:
 
       [Status: 200, Size: 154, Words: 9, Lines: 10, Duration: 0ms]
