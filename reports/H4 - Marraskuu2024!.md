@@ -47,7 +47,7 @@ Wgetillä ladataan rockyou-sanakirja:
 
 Komennolla ```hashid -m 6b1628b016dff46e6fa35684be6acc96``` tunnistetaan mahdollisesti käytetty hashaus-muoto.
 
-![hashid]()
+![hashid](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/hashid.png)
 
 Ajetaan Hashcat komennolla ```hashcat -m 0 '6b1628b016dff46e6fa35684be6acc96' rockyou.txt -o solved```
 
@@ -57,7 +57,7 @@ Komennon argumentit on selitetty artikkelissa, mutta lyhyesti:
 - **'6b1628b016dff46e6fa35684be6acc96'** = Murrettava hash
 - **-o solved** = Tiedosto mihin murrettu salasana tallennetaan
 
-![Hashcat Solved1]()
+![Hashcat Solved1](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/hashcat_solved_1.png)
 
 ## John the Ripperin asennus ja esimerkkisalasanan murtaminen
 
@@ -78,17 +78,17 @@ Paketin kokoamiseen käytettävä make-komento tulostuu './configure':n tulostuk
 
     make -s clean && make -sj2
 
-![John asennettu]()
+![John asennettu](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/john_asennettu.png)
 
 Pääsen kokeilemaan Johnia lataamalla esimerkkitiedoston Teron artikkelista. Tiedosto on suojattu salasanalla, ja tarkoitus on murtaa salasana Johnin avulla.
 
 Ensin kaivetaan .zip-tiedoston hash komennolla ```zip2john /home/osku/tero.zip >tero.zip.hash```. Tämän jälkeen annoin Johnin tehdä tehtävänsä: ```john tero.zip.hash```
 
-![John Tero murrettu]()
+![John Tero murrettu](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/john_tero_murrettu.png)
 
 Salasanan avulla pääsin purkamaan kohdetiedoston:
 
-![Tero.zip loot]()
+![Tero.zip loot](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/tero_zip_loot.png)
 
 ## d) Ffufme harjoitusmaalien ratkaisu
 
@@ -258,7 +258,7 @@ Tulos:
 
 Tässä tehtävässä osannut hakea subdomainin koko URL:ia.
 
-## e) Tiedosto
+## e) Oman tiedoston salauksen purkaminen
 
 Tätä tehtävää varten loin oman tiedoston jonka suojasin käyttäen GnuPG:tä:
 
@@ -274,6 +274,36 @@ Ja ajetaan John:
 
     ┌──(osku㉿kali)-[~/john/run]
     └─$ john target_file.hash 
+
+Taisi olla liian helppo salasana, sillä se murrettiin alle sekunnissa :) Hups
+
+![John oma tiedosto]
+
+## f) Tiiviste
+
+Loin uuden hashatun salasanan komennolla ```mkpasswd -m sha256crypt```, joka ajamisen jälkeen pyytää syöttämään salattavan salasanan.
+
+Murrettava hash: $5$pwTwA/3.yytB8R5G$3j7k3Nnj3IROTuL.u8NX8ohqmNprRa6upJ8lwuTJ1E/
+
+Yritin ensin tunnistaa salauksen tyypin hashid:llä, mutta jostain syystä tämä ei toiminut. Käytin komentoa ```hashid -m $5$pwTwA/3.yytB8R5G$3j7k3Nnj3IROTuL.u8NX8ohqmNprRa6upJ8lwuTJ1E/```, mutta vastauksena oli:
+
+    ┌──(osku㉿kali)-[~/target]
+    └─$ hashid -m $5$pwTwA/3.yytB8R5G$3j7k3Nnj3IROTuL.u8NX8ohqmNprRa6upJ8lwuTJ1E/                                           
+    Analyzing '/3.yytB8R5Gj7k3Nnj3IROTuL.u8NX8ohqmNprRa6upJ8lwuTJ1E/'
+    [+] Unknown hash
+
+Tietysti tiesin itse minkä tyyppinen hash on, mutta ajattelin että jotenkin se pitää pystyä varmistamaan. ```Hashcat --help``` tulostaa eri hashaus-menetelmien koodit, ja sieltä löytyi ```7400 | sha256crypt $5$, SHA256 (Unix)```, jossa on '$5$', missä on sama alku kuin murrettavassa hashissa.
+
+Tämän jälkeen suoritin Hashcatin:
+
+    ┌──(osku㉿kali)-[~/hashed]
+    └─$ hashcat -m 7400 '$5$Lk1VJ.3Opy0PcCnO$yxHWlDbJ6p0JbsFDACJPBy5o0nc43mvoqVPnbIlkL2.' rockyou.txt -o murrettu
+
+Ja lopputulos oli seuraava:
+
+    ┌──(osku㉿kali)-[~/hashed]
+    └─$ hashcat -m 7400 '$5$Lk1VJ.3Opy0PcCnO$yxHWlDbJ6p0JbsFDACJPBy5o0nc43mvoqVPnbIlkL2.' rockyou.txt -o murrettu
+
 
 # Lähteet:
 
