@@ -36,19 +36,40 @@
   - **DOM-based XSS**:
     - Samoin kuin Reflected XSS-hyökkäyksessä, koodi suoritetaan suoraan uhrin selaimessa tämän avatessa URL:n, kun verkkosivu käsittelee syötettä JavaScriptin avulla.
 
-## a) Totally Legit Sertificate | ZAPProxy asennus ja käyttöönotto
+## a) Totally Legit Sertificate
 
+### ZAPProxy asennus ja käyttöönotto
 Latasin ZAPin Kalin paketin hallinnasta. Käynnistyksen ohessa kysyttiin haluanko että sessio jatkuu taustalla, ja valitsin kyllä. Tällä tavoin minun ei tarvitse tallentaa sessiota jatkuvasti.
+
+![zap-download](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/zaproxy-lataus.png)
+
+![zap-käynnistys ja persist](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/zap-k%C3%A4ynnistys-ja-persist.png)
 
 Menin päivittämään display-asetuksia, mutta painaessani "OK", sain virheen (josta ei nyt satu olemaan kuvankaappausta). Virhe kuitenkin johtui vanhentuneista add-oneista, ja ladattuani niihin päivitykset sain muutettua myös display-asetuksia.
 
 "Process images in HTTP requests/responses"-asetus näyttää kuviin kohdistuvat pyynnöt, ja ajattelin että "Display timestamps on output tabs?"-asetus osoittautuisi hyödylliseksi, sillä kaikki dokumentaatio on hyvästä.
 
-![zap-download]()
+![zap display-asetukset](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/zap-display-asetukset.png)
 
-![zap-käynnistys ja persist]
+### CA-sertifikaatin generointi ja käyttöönotto
 
-![zap display-asetukset]
+Sertifikaatin generointi tapahtuu **Options => Network => Server Certificates**. Pystyt valitsemaan kuinka kauan haluat sertifikaatin olevan voimassa, oletuksena se on 365 päivää. Generoidaan se valitsemalla "Generate" ja tämän jälkeen tallennetaan se haluamaasi hakemistoon valitsemalla "Save".
+
+![zap-certificate](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/zap-certificate.png)
+
+Itse käytän Linuxilla Firefoxia, jossa sertifikaatti otetaan käyttöön menemällä **Settings => Privacy & Security => Certificates => View Certificates => Authorities => Import**. Etsin generoidun sertifikaatin ja painan "Open".
+
+![Zap certificate käytössä](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/zap-certificate-k%C3%A4yt%C3%B6ss%C3%A4.png)
+
+Seuraavaksi ZAP piti asettaa Firefoxin proxyksi. Varmistin ZAPProxyn asetuksista **Network => Local Servers/Proxies** mitä porttia localhost käyttää, ja käytin näitä tietoja Firefoxin proxy-asetuksien muuttamiseen.
+
+![zap localhost proxy](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/zap-localhost-proxy.png)
+
+![firefox proxy asetukset](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/firefox-proxy-settings.png)
+
+Käynnistin varmuuden vuoksi selaimen uudestaan, ja ZAPProxyyn alkoi ilmestymään hakupyyntöjä. Varmuuden vuoksi käytin tähän Metasploitable2 virtuaalikoneen ja oman koneeni välistä yhteyttä.
+
+![zap GET pyynnöt](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/zap-get.png)
 
 # Lähteet
 - Karvinen, T. 2024. Tunkeutumistestaus - Täysin Laillinen Sertifikaatti. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/#h5-taysin-laillinen-sertifikaatti
