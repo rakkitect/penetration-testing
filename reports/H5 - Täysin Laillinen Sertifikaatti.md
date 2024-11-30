@@ -36,6 +36,20 @@
   - **DOM-based XSS**:
     - Samoin kuin Reflected XSS-hyökkäyksessä, koodi suoritetaan suoraan uhrin selaimessa tämän avatessa URL:n, kun verkkosivu käsittelee syötettä JavaScriptin avulla.
 
+## a) Totally Legit Sertificate | ZAPProxy asennus ja käyttöönotto
+
+Latasin ZAPin Kalin paketin hallinnasta. Käynnistyksen ohessa kysyttiin haluanko että sessio jatkuu taustalla, ja valitsin kyllä. Tällä tavoin minun ei tarvitse tallentaa sessiota jatkuvasti.
+
+Menin päivittämään display-asetuksia, mutta painaessani "OK", sain virheen (josta ei nyt satu olemaan kuvankaappausta). Virhe kuitenkin johtui vanhentuneista add-oneista, ja ladattuani niihin päivitykset sain muutettua myös display-asetuksia.
+
+"Process images in HTTP requests/responses"-asetus näyttää kuviin kohdistuvat pyynnöt, ja ajattelin että "Display timestamps on output tabs?"-asetus osoittautuisi hyödylliseksi, sillä kaikki dokumentaatio on hyvästä.
+
+![zap-download]()
+
+![zap-käynnistys ja persist]
+
+![zap display-asetukset]
+
 # Lähteet
 - Karvinen, T. 2024. Tunkeutumistestaus - Täysin Laillinen Sertifikaatti. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/#h5-taysin-laillinen-sertifikaatti
 - OWASP org. 2021. A01:2021 - Broken Access Control. Luettavissa: https://owasp.org/Top10/A01_2021-Broken_Access_Control/. Luettu: 29.11.2024
