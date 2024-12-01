@@ -71,7 +71,47 @@ Käynnistin varmuuden vuoksi selaimen uudestaan, ja ZAPProxyyn alkoi ilmestymä�
 
 ![zap GET pyynnöt](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/zap-get.png)
 
+## b) Kettumaista | Asenna FoxyProxy
+
+FoxyProxy Standard on selaimen lisäosa, jonka avulla ZAP Proxy ymmärtääkseni seuraa vain FoxyProxyyn asetettuja verkkosivuja. Asennuksen löysin [FoxyProxyn sivuilta](https://getfoxyproxy.org/downloads/). Sivulta löytyy linkit ja ohjeet jokaiselle selaimelle. Itse käytän FireFoxia.
+
+FoxyProxyn asetuksissa asetan proxyyn ohjattaviksi verkkosivuiksi localhostin, PortSwigger Academyn Labsit ja Metasploitable2-koneeni.
+
+![Foxyproxy patterns](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/foxyproxy-patterns.png)
+
+PortSwigger labrojen URL:in käytön huomasin Tommi Salon [raportista](https://github.com/TommiSalo02/penetration-testing-course/blob/main/h5-T%C3%A4ysin-Laillinen-Sertifikaatti.md), ja asetin sen FoxyProxyyn jo tässä vaiheessa. Relevantiksi se tulee vasta seuraavissa tehtävissä.
+
+# PortSwigger Labrat
+
+## c) Insecure Direct Object References
+
+Tehtävänä oli etsiä käyttäjän 'Carlos' salasana. Labran alustana on jonkinlainen verkkokauppa, jonka etusivulla on vaihtoehtoina "Home", "My account" ja "Live chat". Avasin ensin chat-palvelun. Viestin kirjoittaminen ei tuottanut tulosta ZAP proxyn puolella, mutta "View Transcript" suoritti latauksen: 2.txt
+
+Lataus näkyi ZAPin puolella pyyntönä:
+
+    GET https://0a2f006c045da3e782292947002d00af.web-security-academy.net/download-transcript/2.txt HTTP/1.1
+
+Palvelin antoi vastauksen:
+
+    HTTP/1.1 302 Found
+    Location: /download-transcript/2.txt
+
+Elikkä meillä on tiedossa URL mistä chat-historia ladataan, ja että ne nimetään yksinkertaisesti numerojärjestyksessä. Saisinko ladattua tiedoston 1.txt kirjoittamalla hauksi?
+    
+    GET https://0a2f006c045da3e782292947002d00af.web-security-academy.net/download-transcript/1.txt HTTP/1.1
+
+![PortSwigger IDOR](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/PortSwigger-IDOR.png)
+
+Avaamalla tiedoston näen Carlosin chat-historian jossa hän kysyy salasanaansa chatissa.
+
+![PortSwigger Carlos salasana](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/PortSwigger-Carlos-salasana.png)
+
+Kirjautuminen näillä tiedoilla:
+
+![PortSwigger IDOR Ratkaisu](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/PortSwigger-IDOR-ratkaistu.png)
+
 # Lähteet
+- FoxyProxy. s.a. Downloads. Luettavissa: https://getfoxyproxy.org/downloads/. Luettu: 01.12.2024
 - Karvinen, T. 2024. Tunkeutumistestaus - Täysin Laillinen Sertifikaatti. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/#h5-taysin-laillinen-sertifikaatti
 - OWASP org. 2021. A01:2021 - Broken Access Control. Luettavissa: https://owasp.org/Top10/A01_2021-Broken_Access_Control/. Luettu: 29.11.2024
 - OWASP org. 2021. A10:2021 - Server-Side Request Forgery (SSRF). Luettavissa: https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/. Luettu: 29.11.2024
