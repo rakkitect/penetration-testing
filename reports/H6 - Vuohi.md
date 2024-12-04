@@ -11,7 +11,7 @@ Asennus suoritetaan kohdan 'x' artikkelin mukaisesti. OpenJDK koneellani oli jo 
 
 OpenJDK ja UFW asennettuna:
 
-![OpenJDK ja UFW versiot]()
+![OpenJDK ja UFW versiot](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20102528.png)
 
 Artikkelissa mainitaan WebGoatin uusimman version asentaminen joka on tätä raporttia kirjoittaessa 2023.8, mutta kurssin tehtäviä varten pitää olla versio 2023.4.
 
@@ -21,7 +21,7 @@ WebGoatin käynnistys:
 
     java -Dfile.encoding=UTF-8 -Dwebgoat.port=8888 -Dwebwolf.port=9090 -jar webgoat-2023.4.jar
 
-![WebGoat asennettuna]()
+![WebGoat asennettuna](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20104210.png)
 
 ## WebGoat 2023.4
 ### b) Broken Access Control
@@ -40,18 +40,16 @@ Hijack_cookien ensimmäinen osio kasvoi muuten yhdellä, mutta yhdessä kohtaa s
 
 Evästeen toinen osa näyttää olevan mahdollisesti jonkinlainen aikaleima joka on ```1733306600732``` ja ```1733306601737``` välillä.
 
-Nyt on aika siis käyttää bruteforcea. Yritin etsiä onko ZAProxyssa mahdollista suorittaa sitä, mutta en löytänyt mitään. Joten generoin listan mahdollisista numeroista, ja aloin syöttämään niitä pitkäjänteisesti.
-
-Hetken ajan jälkeen tajusin että tämähän on hullua. Kävi ilmi että ZAPissa on sisäänrakennettu Fuzzeri jota en vain osannut löytää. Jostain syystä oikeaa arvoa ei löytynyt kuitenkaan fuzzaamalla.
+Nyt on aika siis käyttää bruteforcea. Kävi ilmi että ZAPissa on sisäänrakennettu fuzzeri. Jostain syystä oikeaa arvoa ei löytynyt kuitenkaan fuzzaamalla.
 
 Ohessa käyttämäni fuzzaus parametrit ZAP:in sisällä:
 
-![ZAP FUZZ]()
+![ZAP FUZZ](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20124353.png)
 
 #### Insecure Direct Object References
 Tehtävässä on tarkoitus päästä käsiksi toisen käyttäjän profiiliin. Kirjauduttuani "omilla" tunnuksillani, ZAPissa näkyi palvelimen vastaus profiilin tietojen katsomiseen:
 
-![IDOR Profiili]()
+![IDOR Profiili](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20130524.png)
 
 Eli attribuutit "role" ja "userId", jotka eivät käyttöliittymässä näy - mutta vaikuttavat melko tärkeiltä.
 
@@ -88,9 +86,9 @@ Mutta vastaus oli jatkuvasti:
 #### Missing Funtion Level Access Control
 Tehtävän ensimmäisessä osassa piilotetun dropdown-menun löytää yksinkertaisesti inspect-toolilla.
 
-Seuraavassa osassa piti saada käyttäjän hash. Tässä hyödynnettiin edellisessä osassa paljastunutta hakemistioa "/access-contro/users". Painamalla "submit" painiketta, sain ZAPiin POST-pyynnön. Tekemällä pyyntöön pienet muokkaukset sain tulostettua käyttäjät:
+Seuraavassa osassa piti saada käyttäjän hash. Tässä hyödynnettiin edellisessä osassa paljastunutta hakemistioa "/access-control/users". Painamalla "submit" painiketta, sain ZAPiin POST-pyynnön. Tekemällä pyyntöön pienet muokkaukset sain tulostettua käyttäjät:
 
-![Access Control Users]()
+![Access Control Users](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20154836.png)
 
 Muutokset olivat:
 - POST => GET
@@ -127,11 +125,11 @@ Virhe ilmeisesti viittaa virheeseen json contentissa. Json tai RESTful API eivä
 #### Authentication Bypasses
 Kuten tehtävänannossa sanotaan, todennuksen ohitus onnistuu useimmiten kohteessa olevan konfiguraatio/logiikka-virheen ansiosta.
 
-![Security questions]
+![Security questions](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20221105.png)
 
 En tiedä kysymyksien vastauksia, mutta painetaan submit silti. ZAPin avulla näen, että tämä luo POST-pyynnön josta näkyy seuraava data:
 
-![POST]()
+![POST](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20221123.png)
 
 Mitä tapahtuu jos poistetaan ```secQuestion0=&secQuestion1```?
 
@@ -156,11 +154,11 @@ Läpäisty.
 #### Insecure Login
 Tämä oli erittäin yksiselitteinen tehtävä.
 
-![Let's try insecure login]
+![Let's try insecure login](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20222501.png)
 
 Katsotaan ZAPissa POST-pyyntöä:
 
-![POST]
+![POST](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20222512.png)
 
 Elikkä tunnus "CaptainJack" ja salasana "BlackPearl".
 
@@ -168,43 +166,56 @@ Elikkä tunnus "CaptainJack" ja salasana "BlackPearl".
 
 Tehtävänä on URL:ia muuttamalla saada Jerryn kuva palvelimelta.
 
-![Tom]()
+![Tom](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20222911.png)
 
-![Tom POST]()
+![Tom POST](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20222923.png)
 
 Vaihdetaan vain ```url=images%2Ftom.png``` => ```url=images%2Fjerry.png```
 
 Toisessa tehtävässä piti saada palvelin hakemaan tietoa osoitteesta http://ifconfig.pro. Tuttu juttu, painetaan painiketta ja tutkitaan POST-pyyntöä.
 
-![Tehtävänanto]()
+![Tehtävänanto](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20223220.png)
 
-![POST]()
+![POST](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20223327.png)
 
 Muutetaan URL vastaamaan haluttua osoitetta: url=http://ifconfig.pro
 
-![Rocked the SSRF]
+![Rocked the SSRF](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20223959.png)
 
 ### e) Client side | Bypass front-end restrictions
-
+#### 1
 Tarkoituksena on löytää käyttäjän Neville Bartholomew palkkatiedot, mutta meillä ei ole niihin pääsyä.
 
-Käyttämällä inspect-työkalua näen että yksi User ID puuttuu: 102. Päättelisin tämän olevan Nevillen ID. Sitten pitää keksiä miten tämän avulla saadaan hänen tietonsa näkyviin. Ensiksi kokeilin HTML-koodin muuttamista inspect-työkalussa, joka toimi teoriassa. User ID: 102 ei olekkaan Nevillen, vaan Moe Stoogen. User ID: 111 taas oli John Wayne.
+![Näkymä](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20224357.png)
+
+Käyttämällä inspect-työkalua näin että yksi User ID puuttuu: 102. Päättelin tämän olevan Nevillen ID. Sitten pitää keksiä miten tämän avulla saadaan hänen tietonsa näkyviin.
+
+![HTML](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20224309.png)
+
+Ensiksi kokeilin HTML-koodin muuttamista inspect-työkalussa, joka toimi teoriassa. User ID: 102 ei olekkaan Nevillen, vaan Moe Stoogen. User ID: 111 taas oli John Wayne.
+
+![Moe Stooge](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20225257.png)
 
 Kokeilin eri numeroita kuten 99 ja 1, mutta nämä eivät tehneet mitään. Lopulta User ID 112 oli oikein:
 
-![Neville]()
+![Neville](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20225600.png)
 
+
+#### 2
 Seuraavassa osiossa inspectillä löytyy osio joissa listataan koodeja, mutta mikään näistä ei anna "täyttä" alennusta. Mutta kun tarkastelee GET-pyyntöjä joita palvelusta tulee, ja etsii hakusanalla "discount", löytyy tämmöinen:
 
-![get it for free]
+![get it for free](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20230938.png)
 
-![tehty]()
+![Ilmainen puhelin](https://github.com/rakkitect/penetration-testing/blob/main/reports/Kuvat/Screenshot%202024-12-04%20230958.png)
 
 ## f) Editmenu
 
-Yritin luoda omaa komentoa Paletteroon, mutta en onnistunut siinä.
+Yritin luoda omaa komentoa Paletteroon joka on Micro-tekstieditorin lisäosa, mutta en onnistunut siinä.
+
+[Palettero Github](https://github.com/terokarvinen/palettero).
 
 # Lähteet
 - Karvinen, T. 2020. Try Web Hacking on New Webgoat 2023.4. Luettavissa: https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/. Luettu: 04.12.2024
 - Karvinen, T. 2024. Tunkeutumistestaus H6 - Vuohi | Tehtävänanto. Luettavissa: https://terokarvinen.com/tunkeutumistestaus/#h6-vuohi
-- RESTful. HTTP Methods. Luettavissa: https://restfulapi.net/http-methods/. Luettu: 04.12.2024
+- Karvinen, T. Palettero. https://github.com/terokarvinen/palettero
+- RESTful API s.a. HTTP Methods. Luettavissa: https://restfulapi.net/http-methods/. Luettu: 04.12.2024
