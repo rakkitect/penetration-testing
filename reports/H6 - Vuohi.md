@@ -1,5 +1,6 @@
 # H6 - Vuohi
 ##### Pentesting course taught by Tero Karvinen @ Haaga-Helia
+### Kurssi ja tehtävät: https://terokarvinen.com/tunkeutumistestaus/#h6-vuohi
 
 ## x) Lue ja Tiivistä
 ### Tero Karvinen 2020: Using New Webgoat 2023.4 to Try Web Hacking
