@@ -101,10 +101,6 @@ Lähettämällä tämän ZAPin Manual Request Editorilla, palvelimelta tuli vast
 
 Viimeisessä tehtävässä minun olisi tarkoitus luoda uusi tunnus lähettämällä POST pyyntö ```/access-control/users``` hakemistoon. Tässä käyttämäni HTTP-pyyntö.
 
-Vastauksena tuli jatkuvasti ```HTTP/1.1 400 Bad Request
-Content-Length: 0
-Connection: close```
-
     POST http://127.0.0.1:8888/WebGoat/access-control/users HTTP/1.1
     host: 127.0.0.1:8888
     User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0
@@ -118,19 +114,95 @@ Connection: close```
     content-length: 0
     { "username": "user1", "password": "password", "admin": true }
 
+Vastauksena tuli jatkuvasti:
 
+    HTTP/1.1 400 Bad Request
+    Content-Length: 0
+    Connection: close
+
+Virhe ilmeisesti viittaa virheeseen json contentissa. Json tai RESTful API eivät ole tarpeeksi tuttuja jotta pystyisin tämän ratkaisemaan.
 
 ### c) Identity & Auth Failure
 
 #### Authentication Bypasses
+Kuten tehtävänannossa sanotaan, todennuksen ohitus onnistuu useimmiten kohteessa olevan konfiguraatio/logiikka-virheen ansiosta.
+
+![Security questions]
+
+En tiedä kysymyksien vastauksia, mutta painetaan submit silti. ZAPin avulla näen, että tämä luo POST-pyynnön josta näkyy seuraava data:
+
+![POST]()
+
+Mitä tapahtuu jos poistetaan ```secQuestion0=&secQuestion1```?
+
+    "lessonCompleted" : false,
+    "feedback" : "Not quite, please try again.",
+    "output" : null,
+    "assignment" : "VerifyAccount",
+    "attemptWasMade" : true
+
+Se ei siis toiminut. Seuraavaksi kokeilin muuttaa parametreja: ```secQuestion2=&secQuestion3=&jsEnabled=1&verifyMethod=SEC_QUESTIONS&userId=12309746```
+
+    {
+      "lessonCompleted" : true,
+      "feedback" : "Congrats, you have successfully verified the account without actually verifying it. You can now change your password!",
+      "output" : null,
+      "assignment" : "VerifyAccount",
+      "attemptWasMade" : true
+    }
+
+Läpäisty.
+
 #### Insecure Login
+Tämä oli erittäin yksiselitteinen tehtävä.
+
+![Let's try insecure login]
+
+Katsotaan ZAPissa POST-pyyntöä:
+
+![POST]
+
+Elikkä tunnus "CaptainJack" ja salasana "BlackPearl".
 
 ### d) Server-side Request Forgery
 
+Tehtävänä on URL:ia muuttamalla saada Jerryn kuva palvelimelta.
+
+![Tom]()
+
+![Tom POST]()
+
+Vaihdetaan vain ```url=images%2Ftom.png``` => ```url=images%2Fjerry.png```
+
+Toisessa tehtävässä piti saada palvelin hakemaan tietoa osoitteesta http://ifconfig.pro. Tuttu juttu, painetaan painiketta ja tutkitaan POST-pyyntöä.
+
+![Tehtävänanto]()
+
+![POST]()
+
+Muutetaan URL vastaamaan haluttua osoitetta: url=http://ifconfig.pro
+
+![Rocked the SSRF]
+
 ### e) Client side | Bypass front-end restrictions
+
+Tarkoituksena on löytää käyttäjän Neville Bartholomew palkkatiedot, mutta meillä ei ole niihin pääsyä.
+
+Käyttämällä inspect-työkalua näen että yksi User ID puuttuu: 102. Päättelisin tämän olevan Nevillen ID. Sitten pitää keksiä miten tämän avulla saadaan hänen tietonsa näkyviin. Ensiksi kokeilin HTML-koodin muuttamista inspect-työkalussa, joka toimi teoriassa. User ID: 102 ei olekkaan Nevillen, vaan Moe Stoogen. User ID: 111 taas oli John Wayne.
+
+Kokeilin eri numeroita kuten 99 ja 1, mutta nämä eivät tehneet mitään. Lopulta User ID 112 oli oikein:
+
+![Neville]()
+
+Seuraavassa osiossa inspectillä löytyy osio joissa listataan koodeja, mutta mikään näistä ei anna "täyttä" alennusta. Mutta kun tarkastelee GET-pyyntöjä joita palvelusta tulee, ja etsii hakusanalla "discount", löytyy tämmöinen:
+
+![get it for free]
+
+![tehty]()
+
 ## f) Editmenu
 
-
+Yritin luoda omaa komentoa Paletteroon, mutta en onnistunut siinä.
 
 # Lähteet
 - Karvinen, T. 2020. Try Web Hacking on New Webgoat 2023.4. Luettavissa: https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/. Luettu: 04.12.2024
