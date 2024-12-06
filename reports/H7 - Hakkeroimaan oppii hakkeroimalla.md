@@ -52,4 +52,4 @@ Palvelun luonteesta riippuen, t채m채n j채lkeen voisi vaihtaa k채ytt채j채n s채hk�
 
 # L채hteet:
 - ZAP, 2022. PortSwigger Labs: Username Enumeration with ZAP Scripts. Luettavissa: https://www.zaproxy.org/blog/2022-04-14-portswigger-lab-username-enumeration-with-zap-scripts/. Luettu: 06.12.2024
-- PortSwigger. https://portswigger.net/web-security/authentication/auth-lab-passwords
+- PortSwigger. Lab: Username enumeration via different responses. Luettavissa: https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses. Luettu: 06.12.2024
