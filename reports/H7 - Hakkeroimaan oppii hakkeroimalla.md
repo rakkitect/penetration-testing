@@ -1,7 +1,25 @@
 # H7 - Hakkeroimaan oppii hakkeroimalla
 ##### Pentesting course taught by Tero Karvinen @ Haaga-Helia
 
-## b) PortSwigger Academy harjoitteluita
+## x) Lue ja tiivistä
+Tehtävänä oli etsiä itsenäisesti kurssin aiheisiin liittyvä JUFO-arvioitu _review_-artikkeli.
+
+- Julkaisija: IEEE
+- JUFO-taso: 1
+- Valittu artikkeli: [Automated Penetration Testing, A Systematic Review](https://ieeexplore.ieee.org/abstract/document/10278377)
+
+Artikkeli on 8 sivua pitkä, joten tiivistelmä pohjautuu enimmäkseen silmäilyyn.
+- Artikkelin päämäärä on kuvata tunkeutumistestauksen elinkaari alusta loppuun, sekä erot manuaalisen ja automatisoidun tunkeutumistestauksen välillä
+- Elinkaaren "Tiedonkeruu"-vaiheesta mainitaan, että iedon löytäminen kohdeorganisaatioista on nykyään helpompaa sosiaalisen median ja erilaisten työkalujen ansiosta. Mainittuja työkaluja ovat CrunchBase-tietokanta, SAM ja GSA eLibrary sekä Whois-tietokanta
+- Sisältää tiivistetyn taulukon manuaalisen ja automatisoidun pen-testauksen eroista. Erot ovat erittäin yksinkertaistettuja
+- Samoin kuin sovellusten testauksessa, pen-testauksessa on kolme erilaista testaustapaa:
+  - Black box penetration testing = Murtautuminen ilman aiempaa tietoa järjestelmästä
+  - White box penetration testing = Murtautuminen niin, että hyökkääjä tuntee lähdekoodin
+  - Grey box penetration testing = Jonkin verran tietoa järjestelmän toiminnasta ja rakenteesta
+- Lyhyt analyysi seitsemästä hyökkäystyökalusta: Nmap, Burpsuite, Wireshark, Metasploit, Nessus, Intruder, Netsparker
+- Artikkelin johtopäätös: Automatisoitu ja manuaalinen tunkeutumistestaus täydentävät toisiaan. Tulevaisuudessa on oletettavaa että tekoälymallit yleistyvät alalla
+
+## a) PortSwigger Academy harjoitteluita
 ###  Username enumeration via different responses
 
 Tarkoituksena on siis tunnistaa olemassa oleva käyttäjätunnus, ja käyttäen brute forcea löytää käyttäjän salasana.
@@ -53,5 +71,6 @@ Pyynnön sisältö oli seuraava: ```username=af&password=princess```, eli nyt ko
 Palvelun luonteesta riippuen, tämän jälkeen voisi vaihtaa käyttäjän sähköpostiosoitteen palvelussa, salasanan tai löytää mahdollisesti pankkitietoja. Realistisessa tilanteessa millään palvelulla ei kuitenkaan ole näin huonoa suojausta toistuvia kirjautumisyrityksiä kohtaan :)
 
 # Lähteet:
-- ZAP, 2022. PortSwigger Labs: Username Enumeration with ZAP Scripts. Luettavissa: https://www.zaproxy.org/blog/2022-04-14-portswigger-lab-username-enumeration-with-zap-scripts/. Luettu: 06.12.2024
+- Bahaa-Eldin, A. M., ElSayad, D., Fayed, Zt. & Saber, V. 2023. Automated Penetration Testing, A Systematic Review. Luettavissa: https://ieeexplore.ieee.org/abstract/document/10278377. Luettu: 11.12.2024
 - PortSwigger. Lab: Username enumeration via different responses. Luettavissa: https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses. Luettu: 06.12.2024
+- ZAP, 2022. PortSwigger Labs: Username Enumeration with ZAP Scripts. Luettavissa: https://www.zaproxy.org/blog/2022-04-14-portswigger-lab-username-enumeration-with-zap-scripts/. Luettu: 06.12.2024
