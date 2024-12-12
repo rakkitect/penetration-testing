@@ -10,7 +10,7 @@ Tehtävänä oli etsiä itsenäisesti kurssin aiheisiin liittyvä JUFO-arvioitu 
 
 Artikkeli on 8 sivua pitkä, joten tiivistelmä pohjautuu enimmäkseen silmäilyyn.
 - Artikkelin päämäärä on kuvata tunkeutumistestauksen elinkaari alusta loppuun, sekä erot manuaalisen ja automatisoidun tunkeutumistestauksen välillä
-- Elinkaaren "Tiedonkeruu"-vaiheesta mainitaan, että iedon löytäminen kohdeorganisaatioista on nykyään helpompaa sosiaalisen median ja erilaisten työkalujen ansiosta. Mainittuja työkaluja ovat CrunchBase-tietokanta, SAM ja GSA eLibrary sekä Whois-tietokanta
+- Elinkaaren "Tiedonkeruu"-vaiheesta mainitaan, että tiedon löytäminen kohdeorganisaatioista on nykyään helpompaa sosiaalisen median ja erilaisten työkalujen ansiosta. Mainittuja työkaluja ovat CrunchBase-tietokanta, SAM ja GSA eLibrary sekä Whois-tietokanta
 - Sisältää tiivistetyn taulukon manuaalisen ja automatisoidun pen-testauksen eroista. Erot ovat erittäin yksinkertaistettuja
 - Samoin kuin sovellusten testauksessa, pen-testauksessa on kolme erilaista testaustapaa:
   - Black box penetration testing = Murtautuminen ilman aiempaa tietoa järjestelmästä
